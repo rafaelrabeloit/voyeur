@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  	<modelVersion>4.0.0</modelVersion>	
+
+	<groupId>com.neptune.voyeur</groupId>
+	<artifactId>voyeur-server</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+  	<packaging>war</packaging>
+  	
+  	<name>voyeur-server</name>
+  	<description>voyeur Server</description>
+
+    <properties>
+	
+        <!--  encoding-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--java version -->
+        <java-version>1.7</java-version>
+		
+        <compiler-plugin-version>3.1</compiler-plugin-version>
+
+        <ejb-plugin-version>2.3</ejb-plugin-version>
+        <war-plugin-version>2.4</war-plugin-version>
+		
+        <!-- EJB spec version -->
+        <ejb-spec-version>3.2</ejb-spec-version>
+		
+        <!-- dependency versions -->
+        <javaee-api-version>7.0</javaee-api-version>
+
+        <jersey-version>2.19</jersey-version>
+        <jax-rs-version>2.0.1</jax-rs-version>
+        
+        <linking-lang-version>2.2.4</linking-lang-version>
+        
+        <hibernate-jpa-version>1.0.0.Final</hibernate-jpa-version>
+        <hibernate-version>4.3.10.Final</hibernate-version>
+        <connector-version>5.1.35</connector-version>
+        
+        <cdi-version>1.2</cdi-version>
+        <weld-version>2.2.13.Final</weld-version>
+        <jandex-version>1.2.2.Final</jandex-version>
+		
+        <jsoup-version>1.8.2</jsoup-version>
+        
+        <junit-version>4.11</junit-version>
+    </properties>
+
+
+	<dependencies>
+
+        <!-- In-Project Dependencies -->
+		<dependency>
+			<groupId>com.neptune.voyeur</groupId>
+			<artifactId>watcher-server</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.neptune.voyeur</groupId>
+			<artifactId>job-server</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.neptune.voyeur</groupId>
+			<artifactId>value-server</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+	</dependencies>
+	
+    <build>
+        <pluginManagement>
+            <plugins>				
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+				
+                <!-- compiler plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${compiler-plugin-version}</version>
+					<inherited>true</inherited>
+                    <configuration>
+                        <source>${java-version}</source>
+                        <target>${java-version}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+				
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ejb-plugin</artifactId>
+                    <version>${ejb-plugin-version}</version>
+                    <configuration>
+                        <ejbVersion>${ejb-spec-version}</ejbVersion>
+                    </configuration>
+                </plugin>
+            </plugins>
+
+        </pluginManagement>
+    </build>
+</project>

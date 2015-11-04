@@ -1,0 +1,190 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.neptune.voyeur</groupId>
+	<artifactId>watcher-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>watcher-commons</module>
+        <module>watcher-server</module>
+        <module>watcher-client</module>	
+    </modules>
+
+    <properties>
+	
+        <!--  encoding-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--java version -->
+        <java-version>1.7</java-version>
+		
+        <compiler-plugin-version>3.1</compiler-plugin-version>
+
+        <ejb-plugin-version>2.3</ejb-plugin-version>
+        <war-plugin-version>2.4</war-plugin-version>
+		
+        <!-- EJB spec version -->
+        <ejb-spec-version>3.2</ejb-spec-version>
+		
+        <!-- dependency versions -->
+        <javaee-api-version>7.0</javaee-api-version>
+
+        <jersey-version>2.19</jersey-version>
+        <jax-rs-version>2.0.1</jax-rs-version>
+        
+        <linking-lang-version>2.2.4</linking-lang-version>
+        
+        <hibernate-jpa-version>1.0.0.Final</hibernate-jpa-version>
+        <hibernate-version>4.3.10.Final</hibernate-version>
+        <connector-version>5.1.35</connector-version>
+        
+        <cdi-version>1.2</cdi-version>
+        <weld-version>2.2.13.Final</weld-version>
+        <jandex-version>1.2.2.Final</jandex-version>
+		
+        <junit-version>4.11</junit-version>
+		
+        <log4j-version>2.3</log4j-version>
+		
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+		
+			<!-- jax-rs interfaces to use on Resources -->
+			<dependency>
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>javax.ws.rs-api</artifactId>
+				<version>${jax-rs-version}</version>
+				<scope>compile</scope>
+			</dependency>
+            
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+			
+            
+            <!-- Linking language -->
+            <dependency>
+                <groupId>javax.el</groupId>
+                <artifactId>javax.el-api</artifactId>
+                <version>${linking-lang-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.glassfish.web</groupId>
+                <artifactId>javax.el</artifactId>
+                <version>${linking-lang-version}</version>
+            </dependency>
+            
+            
+			<!-- Hibernate  -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernate-version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-c3p0</artifactId>
+				<version>${hibernate-version}</version>
+			</dependency>
+		
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${connector-version}</version>
+			</dependency>
+            
+            
+            <!-- DI -->
+            <dependency>
+                <groupId>javax.enterprise</groupId>
+                <artifactId>cdi-api</artifactId>
+                <scope>provided</scope>
+                <version>${cdi-version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.jboss.weld.servlet</groupId>
+                <artifactId>weld-servlet</artifactId>
+                <version>${weld-version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.jboss</groupId>
+                <artifactId>jandex</artifactId>
+                <version>${jandex-version}</version>
+            </dependency>
+            
+            
+            <!-- Tests -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit-version}</version>
+                <scope>test</scope>
+            </dependency>
+			
+		
+			<!-- EJB Espec -->
+			<dependency>
+				<groupId>javax.ejb</groupId>
+				<artifactId>javax.ejb-api</artifactId>
+				<version>${ejb-spec-version}</version>
+			</dependency>
+
+			
+			<!-- Logger -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j-version}</version>
+			</dependency>
+			
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <pluginManagement>
+            <plugins>				
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+				
+                <!-- compiler plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${compiler-plugin-version}</version>
+					<inherited>true</inherited>
+                    <configuration>
+                        <source>${java-version}</source>
+                        <target>${java-version}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+				
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ejb-plugin</artifactId>
+                    <version>${ejb-plugin-version}</version>
+                    <configuration>
+                        <ejbVersion>${ejb-spec-version}</ejbVersion>
+                    </configuration>
+                </plugin>
+            </plugins>
+
+        </pluginManagement>
+    </build>
+</project>

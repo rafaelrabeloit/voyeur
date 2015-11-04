@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  	<modelVersion>4.0.0</modelVersion>	
+	<parent>
+		<groupId>com.neptune.voyeur</groupId>
+		<artifactId>watcher-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>watcher-client</artifactId>
+	
+  	<packaging>ejb</packaging>
+  	
+  	<name>watcher-client</name>
+  	<description>Client for watcher Resources</description>
+
+	<dependencies>
+
+        <!-- Template -->
+		<dependency>
+			<groupId>com.neptune.templates.microservice</groupId>
+			<artifactId>template-client</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	
+	
+        <!-- In-Project Dependencies -->
+		<dependency>
+			<groupId>com.neptune.voyeur</groupId>
+			<artifactId>watcher-commons</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+	
+		<!-- DI -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+			<scope>compile</scope>
+        </dependency>
+		
+	</dependencies>
+	
+</project>
