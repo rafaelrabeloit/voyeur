@@ -54,10 +54,15 @@ public class Watcher extends DomainTemplate implements java.io.Serializable {
 	private Integer id;
 	private String randomId;
 	
+	private String name;
+	private String description;
+	
 	private String selector;
 	private String target;
 	private String recurrence;
+	
 	private Boolean enabled;
+	
 	private Date ocorrence;
 	private Date foreseen;
 	
@@ -97,6 +102,24 @@ public class Watcher extends DomainTemplate implements java.io.Serializable {
 
 	public void setRandomId(String randomId) {
 		this.randomId = randomId;
+	}
+
+	@Column(name = "name", nullable = false, length = 127)
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Column(name = "description", nullable = true, length = 511)
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Column(name = "selector", nullable = false, length = 255)
