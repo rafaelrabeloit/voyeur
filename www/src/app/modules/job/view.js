@@ -7,37 +7,28 @@
     app.mod.job = app.mod.job || {};
 
     // Creates the job view
-    app.mod.job.View = Backbone.View.extend({
-        // tag
-        tagName: 'li',
-
-        // page class name 
-        className: 'job',
-
+    app.mod.job.View = Backbone.Epoxy.View.extend({
+        el: function () {
+            return this.template(this.model.attributes);
+        },
+        
         // Custom events
         events: {
-            'click .del-job': 'onDelete'
+            'click .delete-job': 'onDelete'
         },
 
         // Custom events hadlers
         onDelete: function () {
             this.model.destroy();
-            this.remove();
-            return;
         },
 
-        // Method fired when the view is initialized
-        initialize: function () {},
-
         template: function (data) {
-            return JST["src/app/templates/job.tpl"]({
-                model: data
-            });
+            return JST["src/app/templates/job.tpl"](data);
         },
         
         // function that renders the view
         render: function () {
-            this.$el.html(this.template(this.model));
+            this.$el.html(this.template(this.model.attributes));
             return this.$el[0];
         },
 

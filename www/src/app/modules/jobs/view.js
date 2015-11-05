@@ -7,8 +7,12 @@
     app.mod.jobs = app.mod.jobs || {};
 
     // Creates the jobs view
-    app.mod.jobs.View = Backbone.View.extend({
-
+    app.mod.jobs.View = Backbone.Epoxy.View.extend({
+        
+        // data binding 
+        itemView: app.mod.job.View,
+        collection: new root.app.collection.Jobs(),
+        
         // page class name 
         className: 'jobs page',
 
@@ -28,35 +32,28 @@
 
         // Method fired when the view is initialized
         initialize: function () {
+            var _this = this;
+            this.collection.fetch({
+                success: function (models, response) {
+                    //TODO: loading end
+                }
+            });
+            console.log("and here");
         },
 
         template: function (data) {
-            return JST["src/app/templates/jobs.tpl"]({
-                model: data
-            });
+            return JST["src/app/templates/jobs.tpl"](data);
         },
         
         // function that renders the view
         render: function () {
-            this.$el.html(this.template(this.model));
+            this.$el.html(this.template());
+            this.applyBindings();
             return this.$el[0];
         },
 
         // function fired when the DOM is rendered
         load: function () {
-            var jobs = new root.app.collection.Jobs(),
-                _this = this;
-            
-            jobs.fetch({
-                success: function (models, response) {
-                    models.each(function (model, index) {
-                        var view = new root.app.mod.job.View({model: model});
-                        $("#jobs-list", _this.$el).append(view.render());
-                    });
-                }
-            });
-            
-            return;
         },
 
         // Function called when the view is destroyed

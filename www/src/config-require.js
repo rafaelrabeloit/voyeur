@@ -9,6 +9,7 @@
             jquery: '../libs/jquery/dist/jquery.min',
             bootstrap: '../libs/bootstrap/dist/js/bootstrap.min',
             backbone: '../libs/backbone/backbone',
+            'backbone.epoxy': '../libs/backbone.epoxy/backbone.epoxy',
             underscore: '../libs/underscore/underscore'
         },
 
@@ -22,13 +23,17 @@
             },
             backbone: {
                 exports: 'Backbone',
-                deps: [ 'underscore' ]
+                deps: [ 'underscore', 'jquery' ]
+            },
+            'backbone.epoxy': {
+                exports: 'Backbone.Epoxy',
+                deps: [ 'backbone' ]
             },
             bootstrap: {
                 exports: 'Bootstrap',
                 deps: [ 'jquery' ]
             },
-            'app' : { deps: [ 'jquery', 'underscore', 'backbone', 'bootstrap' ] },
+            'app' : { deps: [ 'jquery', 'underscore', 'backbone', 'bootstrap', 'backbone.epoxy' ] },
             'core/strings' : { deps: [ 'app' ] },
             'core/mediator' : { deps: [ 'core/strings' ] },
             'core/appParameters' : { deps: [ 'core/strings' ] },
