@@ -8,11 +8,9 @@
 
     // Creates the watcher view
     app.mod.watcher.View = Backbone.View.extend({
-        // tag
-        tagName: 'li',
-        
-        // page class name 
-        className: 'watcher',
+        el: function () {
+            return this.template(this.model.attributes);
+        },
 
         // Custom events
         events: {
@@ -29,18 +27,12 @@
         },
 
         onDelete: function () {
-            var _this = this;
-            this.model.destroy({
-                success: function (model, response) {
-                    _this.remove();
-                }
-            });
-            return;
+            this.model.destroy();
         },
         
         onEnable: function () {
-            console.log( $(".enable-watcher", this.$el).hasClass('active') );
-            console.log( this.model.get('enabled') );
+            console.log($(".enable-watcher", this.$el).hasClass('active'));
+            console.log(this.model.get('enabled'));
             
             var _this = this;
             this.model.set('enabled', $(".enable-watcher", this.$el).hasClass('active'));
@@ -56,18 +48,13 @@
             return;
         },
         
-        // Method fired when the view is initialized
-        initialize: function () {},
-
         template: function (data) {
-            return JST["src/app/templates/watcher.tpl"]({
-                model: data
-            });
+            return JST["src/app/templates/watcher.tpl"](data);
         },
         
         // function that renders the view
         render: function () {
-            this.$el.html(this.template(this.model));
+            this.$el.html(this.template(this.model.attributes));
             return this.$el[0];
         },
 

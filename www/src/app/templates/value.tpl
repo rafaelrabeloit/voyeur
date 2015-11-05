@@ -1,1 +1,3 @@
-<div class="value"><%= model.get("value") %></div>
+<li>
+    <div class="value"><%= value %></div>
+</li>

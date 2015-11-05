@@ -25,9 +25,6 @@
         onNew: function () {
             var job = new root.app.model.Job({status: "FREE"});
             job.save();
-            var view = new root.app.mod.job.View({model: job});
-            $("#jobs-list", this.$el).append(view.render());
-            return;
         },
 
         // Method fired when the view is initialized
@@ -38,7 +35,6 @@
                     //TODO: loading end
                 }
             });
-            console.log("and here");
         },
 
         template: function (data) {

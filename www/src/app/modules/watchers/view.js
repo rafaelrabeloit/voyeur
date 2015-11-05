@@ -7,7 +7,11 @@
     app.mod.watchers = app.mod.watchers || {};
 
     // Creates the watchers view
-    app.mod.watchers.View = Backbone.View.extend({
+    app.mod.watchers.View = Backbone.Epoxy.View.extend({
+
+        // data binding 
+        itemView: app.mod.watcher.View,
+        collection: new root.app.collection.Watchers(),
 
         // page class name 
         className: 'watchers page',
@@ -23,46 +27,36 @@
                 recurrence: $("#recurrence", this.$el).val(),
                 target: $("#target", this.$el).val(),
                 selector: $("#selector", this.$el).val(),
+                name: $("#name", this.$el).val(),
                 enabled: true
             });
             watcher.save();
             
-            var view = new root.app.mod.watcher.View({model: watcher});
-            $("#watchers-list", this.$el).append(view.render());
+            this.collection.add(watcher);
+            
             return;
         },
 
         // Method fired when the view is initialized
-        initialize: function () {},
+        initialize: function () {
+            var _this = this;
+            
+            this.collection.fetch({
+                success: function (models, response) {
+                    //TODO: Loading...
+                }
+            });
+        },
 
         template: function (data) {
-            return JST["src/app/templates/watchers.tpl"]({
-                model: data
-            });
+            return JST["src/app/templates/watchers.tpl"](data);
         },
         
         // function that renders the view
         render: function () {
-            this.$el.html(this.template(this.model));
+            this.$el.html(this.template());
+            this.applyBindings();
             return this.$el[0];
-        },
-
-        // function fired when the DOM is rendered
-        load: function () {
-
-            var watchers = new root.app.collection.Watchers();
-            var _this = this;
-            
-            watchers.fetch({
-                success: function (models, response) {
-                    models.each(function (model, index) {
-                        var view = new root.app.mod.watcher.View({model: model});
-                        $("#watchers-list", _this.$el).append(view.render());
-                    });
-                }
-            });
-
-            return;
         },
 
         // Function called when the view is destroyed
