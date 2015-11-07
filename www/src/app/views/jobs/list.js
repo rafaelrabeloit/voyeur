@@ -16,12 +16,8 @@
 
         // Method fired when the view is initialized
         initialize: function () {
-            var _this = this;
-            this.collection.fetch({
-                success: function (models, response) {
-                    //TODO: loading end
-                }
-            });
+            // register on add for Job
+            root.app.dispatcher.on('add:job', this.refresh, this);
         },
 
         template: function (data) {
@@ -32,7 +28,23 @@
         render: function () {
             this.$el.html(this.template());
             this.applyBindings();
+            
+            this.refresh();
+            
             return this.$el[0];
+        },
+        
+        refresh: function () {
+            this.collection.fetch({
+                reset: true,
+                success: function (models) {
+                    //TODO: loading end                  
+                }
+            });
+        },
+        
+        destroy: function () {
+            root.app.dispatcher.off('add:job', this.refresh, this);
         }
     });
 

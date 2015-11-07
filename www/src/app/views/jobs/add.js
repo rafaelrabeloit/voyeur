@@ -23,7 +23,11 @@
 
         // Custom events hadlers
         onAdd: function () {
-            this.model.save();
+            this.model.save([], {
+                success: function (model, response, options) {
+                    root.app.dispatcher.trigger('add:job');
+                }
+            });
         },
 
         template: function (data) {

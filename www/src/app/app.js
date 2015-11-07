@@ -1,4 +1,4 @@
-/*global window: false, app: false, Backbone: false, JST: false, $: false, require: false*/
+/*global window: false, app: false, Backbone: false, JST: false, $: false, require: false, _: false*/
 
 (function (root) {
     "use strict";
@@ -10,6 +10,8 @@
     // Creates the application main object 
     var app = root.app;
 
+    app.dispatcher = _.extend({}, Backbone.Events);
+    
     // Creates the router instance 
     app.Router = Backbone.Router.extend({
 

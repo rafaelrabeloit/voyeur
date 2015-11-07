@@ -14,14 +14,9 @@
         itemView: root.app.view.value.view.View,
         collection: new root.app.collection.Values(),
 
-        initialize: function (selectedWatcher) {
-            var _this = this;
-            
-            this.collection.fetch({
-                success: function (models, response) {
-                    //TODO: Loading...
-                }
-            });
+        initialize: function (options) {
+            this.selectedWatcher = options.selectedWatcher;
+            this.collection.watcher = this.selectedWatcher;
         },
         
         template: function (data) {
@@ -32,6 +27,14 @@
         render: function () {
             this.$el.html(this.template());
             this.applyBindings();
+            
+            var _this = this;
+            this.collection.fetch({
+                success: function (models, response) {
+                    //TODO: Loading...
+                }
+            });
+            
             return this.$el[0];
         }
     });

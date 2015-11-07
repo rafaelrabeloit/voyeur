@@ -16,7 +16,7 @@
         // Custom events
         events: {
             'click .target': 'onClick',
-            'click .del-watcher': 'onDelete',
+            'click .delete-watcher': 'onDelete',
             'click .enable-watcher': 'onEnable'
         },
 

@@ -1,4 +1,3 @@
-<ul id="watchers-list" data-bind="collection:$collection"> </ul>
 <div>
     <label for="recurrence">Recurrence</label>
     <input type="text" id="recurrence" placeholder="RRule for recurrence">

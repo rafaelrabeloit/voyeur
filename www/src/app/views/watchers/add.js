@@ -9,6 +9,9 @@
 
     // Creates the watchers view
     root.app.view.watcher.add.View = Backbone.Epoxy.View.extend({
+        
+        model: new root.app.model.Watcher(),
+        
         el: function () {
             return this.template(this.model.attributes);
         },
@@ -20,14 +23,18 @@
 
         // Custom events hadlers
         onNew: function () {
-            this.model = new root.app.model.Watcher({
+            this.model.set({
                 recurrence: $("#recurrence", this.$el).val(),
                 target: $("#target", this.$el).val(),
                 selector: $("#selector", this.$el).val(),
                 name: $("#name", this.$el).val(),
                 enabled: true
             });
-            this.model.save();
+            this.model.save([], {
+                success: function (model, response, options) {
+                    root.app.dispatcher.trigger('add:watcher');
+                }
+            });
         },
 
         template: function (data) {

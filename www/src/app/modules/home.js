@@ -1,13 +1,13 @@
 /*global app: false, Backbone: false, JST: false, $: false, require: false */
 
-(function () {
+(function (root) {
     "use strict";
 
     // if the module does not exist
-    app.mod.home = app.mod.home || {};
+    root.app.mod.home = root.app.mod.home || {};
 
     // Creates the Home view
-    app.mod.home.View = Backbone.View.extend({
+    root.app.mod.home.View = Backbone.View.extend({
 
         // page class name 
         className: 'home page',
@@ -45,4 +45,4 @@
         }
     });
 
-}());
+}(window));

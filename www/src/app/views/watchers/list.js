@@ -14,20 +14,10 @@
         itemView: root.app.view.watcher.view.View,
         collection: new root.app.collection.Watchers(),
 
-        // Custom events
-        events: {
-            'click #new-watcher': 'onNew'
-        },
-
         // Method fired when the view is initialized
         initialize: function () {
-            var _this = this;
-            
-            this.collection.fetch({
-                success: function (models, response) {
-                    //TODO: Loading...
-                }
-            });
+            // register on add for Watcher
+            root.app.dispatcher.on('add:watcher', this.refresh, this);
         },
 
         template: function (data) {
@@ -38,12 +28,24 @@
         render: function () {
             this.$el.html(this.template());
             this.applyBindings();
+            
+            this.refresh();
+            
             return this.$el[0];
         },
 
+        refresh: function () {
+            this.collection.fetch({
+                reset: true,
+                success: function (models) {
+                    //TODO: loading end             
+                }
+            });
+        },
+        
         // Function called when the view is destroyed
         destroy: function () {
-            return;
+            root.app.dispatcher.off('add:watcher', this.refresh, this);
         }
     });
 
