@@ -4,10 +4,11 @@
     "use strict";
 
     // if the module does not exist
-    app.mod.watcher = app.mod.watcher || {};
-
+    root.app.view.watcher = root.app.view.watcher || {};
+    root.app.view.watcher.view = root.app.view.watcher.view || {};
+    
     // Creates the watcher view
-    app.mod.watcher.View = Backbone.View.extend({
+    root.app.view.watcher.view.View = Backbone.View.extend({
         el: function () {
             return this.template(this.model.attributes);
         },
@@ -21,8 +22,8 @@
 
         // Custom events hadlers
         onClick: function (e) {
-            root.app.core.load("values");
             localStorage.setItem("app.config.selectedWatcher", this.model.get("resource"));
+            root.app.core.load("values");
             return;
         },
 
@@ -31,9 +32,6 @@
         },
         
         onEnable: function () {
-            console.log($(".enable-watcher", this.$el).hasClass('active'));
-            console.log(this.model.get('enabled'));
-            
             var _this = this;
             this.model.set('enabled', $(".enable-watcher", this.$el).hasClass('active'));
             this.model.save({
@@ -49,23 +47,13 @@
         },
         
         template: function (data) {
-            return JST["src/app/templates/watcher.tpl"](data);
+            return JST["src/app/templates/watchers/view.tpl"](data);
         },
         
         // function that renders the view
         render: function () {
             this.$el.html(this.template(this.model.attributes));
             return this.$el[0];
-        },
-
-        // function fired when the DOM is rendered
-        load: function () {
-            return;
-        },
-
-        // Function called when the view is destroyed
-        destroy: function () {
-            return;
         }
     });
 

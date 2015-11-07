@@ -4,22 +4,19 @@
     "use strict";
 
     // if the module does not exist
-    app.mod.values = app.mod.values || {};
+    root.app.view.value = root.app.view.value || {};
+    root.app.view.value.list = root.app.view.value.list || {};
 
     // Creates the values view
-    app.mod.values.View = Backbone.Epoxy.View.extend({
+    root.app.view.value.list.View = Backbone.Epoxy.View.extend({
 
         // data binding 
-        itemView: app.mod.value.View,
+        itemView: root.app.view.value.view.View,
         collection: new root.app.collection.Values(),
 
-        // page class name 
-        className: 'values page',
-
-        initialize: function () {
+        initialize: function (selectedWatcher) {
             var _this = this;
             
-            this.collection.watcher = localStorage.getItem("app.config.selectedWatcher");
             this.collection.fetch({
                 success: function (models, response) {
                     //TODO: Loading...
@@ -28,7 +25,7 @@
         },
         
         template: function (data) {
-            return JST["src/app/templates/values.tpl"](data);
+            return JST["src/app/templates/values/list.tpl"](data);
         },
         
         // function that renders the view
@@ -36,11 +33,6 @@
             this.$el.html(this.template());
             this.applyBindings();
             return this.$el[0];
-        },
-
-        // Function called when the view is destroyed
-        destroy: function () {
-            return;
         }
     });
 

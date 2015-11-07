@@ -1,1 +1,0 @@
-<ul id="values-list" data-bind="collection:$collection"> </ul>

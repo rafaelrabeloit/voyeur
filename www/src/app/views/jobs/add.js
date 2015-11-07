@@ -4,42 +4,36 @@
     "use strict";
 
     // if the module does not exist
-    app.mod.job = app.mod.job || {};
+    root.app.view.job = root.app.view.job || {};
+    root.app.view.job.add = root.app.view.job.add || {};
 
     // Creates the job view
-    app.mod.job.View = Backbone.Epoxy.View.extend({
+    root.app.view.job.add.View = Backbone.Epoxy.View.extend({
+        
+        model: new root.app.model.Job({status: "FREE"}),
+        
         el: function () {
             return this.template(this.model.attributes);
         },
         
         // Custom events
         events: {
-            'click .delete-job': 'onDelete'
+            'click .add-job': 'onAdd'
         },
 
         // Custom events hadlers
-        onDelete: function () {
-            this.model.destroy();
+        onAdd: function () {
+            this.model.save();
         },
 
         template: function (data) {
-            return JST["src/app/templates/job.tpl"](data);
+            return JST["src/app/templates/jobs/add.tpl"](data);
         },
         
         // function that renders the view
         render: function () {
             this.$el.html(this.template(this.model.attributes));
             return this.$el[0];
-        },
-
-        // function fired when the DOM is rendered
-        load: function () {
-            return;
-        },
-
-        // Function called when the view is destroyed
-        destroy: function () {
-            return;
         }
     });
 

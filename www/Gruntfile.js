@@ -16,7 +16,7 @@ module.exports = function (grunt) {
 
         jst: {
             precompile: {
-                src: source + '/app/templates/*.tpl',
+                src: source + '/app/templates/**/*.tpl',
                 dest: source + '/app/templates/compiled/compiled.js'
             }
         },

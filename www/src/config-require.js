@@ -49,13 +49,23 @@
             'collections/values': { deps: ['models/value', 'core/appParameters'] },
             'collections/jobs': { deps: ['models/job', 'core/appParameters'] },
             'templates/compiled/compiled': { deps: [ 'core/strings' ] },
-            'modules/home/view': { deps: ['templates/compiled/compiled'] },
-            'modules/watchers/view': { deps: ['templates/compiled/compiled', 'collections/watchers', 'modules/watcher/view'] },
-            'modules/values/view': { deps: ['templates/compiled/compiled', 'collections/values'] },
-            'modules/jobs/view': { deps: ['templates/compiled/compiled', 'collections/jobs'] },
-            'modules/watcher/view': { deps: ['templates/compiled/compiled', 'models/watcher'] },
-            'modules/value/view': { deps: ['templates/compiled/compiled', 'models/value'] },
-            'modules/job/view': { deps: ['templates/compiled/compiled', 'models/job'] },
+            
+            'modules/home': { deps: ['templates/compiled/compiled'] },
+            'modules/watchers': { deps: ['templates/compiled/compiled', 'views/watchers/list', 'views/watchers/add'] },
+            'modules/jobs': { deps: ['templates/compiled/compiled', 'views/jobs/list', 'views/jobs/add'] },
+            'modules/values': { deps: ['templates/compiled/compiled', 'views/values/list'] },
+            
+            'views/watchers/add': { deps: ['templates/compiled/compiled', 'models/watcher'] },
+            'views/watchers/view': { deps: ['templates/compiled/compiled', 'models/watcher'] },
+            'views/watchers/list': { deps: ['templates/compiled/compiled', 'collections/watchers', 'views/watchers/view'] },
+            
+            'views/jobs/add': { deps: ['templates/compiled/compiled', 'models/job'] },
+            'views/jobs/view': { deps: ['templates/compiled/compiled', 'models/job'] },
+            'views/jobs/list': { deps: ['templates/compiled/compiled', 'collections/jobs', 'views/jobs/view'] },
+            
+            'views/values/view': { deps: ['templates/compiled/compiled', 'models/value'] },
+            'views/values/list': { deps: ['templates/compiled/compiled', 'collections/values', 'views/values/view'] },
+            
             'init': {
                 deps: [
                     'core/strings',
@@ -73,13 +83,16 @@
                     'collections/watchers',
                     'collections/values',
                     'collections/jobs',
-                    'modules/home/view',
-                    'modules/watchers/view',
-                    'modules/values/view',
-                    'modules/jobs/view',
-                    'modules/watcher/view',
-                    'modules/value/view',
-                    'modules/job/view'
+                    'modules/home',
+                    'modules/watchers',
+                    'modules/values',
+                    'modules/jobs',
+                    'views/watchers/view',
+                    'views/watchers/list',
+                    'views/values/view',
+                    'views/values/list',
+                    'views/jobs/list',
+                    'views/jobs/view'
                 ]
             }
         }

@@ -4,41 +4,34 @@
     "use strict";
 
     // if the module does not exist
-    app.mod.jobs = app.mod.jobs || {};
+    root.app.view.watcher = root.app.view.watcher || {};
+    root.app.view.watcher.list = root.app.view.watcher.list || {};
 
-    // Creates the jobs view
-    app.mod.jobs.View = Backbone.Epoxy.View.extend({
-        
+    // Creates the watchers view
+    root.app.view.watcher.list.View = Backbone.Epoxy.View.extend({
+
         // data binding 
-        itemView: app.mod.job.View,
-        collection: new root.app.collection.Jobs(),
-        
-        // page class name 
-        className: 'jobs page',
+        itemView: root.app.view.watcher.view.View,
+        collection: new root.app.collection.Watchers(),
 
         // Custom events
         events: {
-            'click #new-job': 'onNew'
-        },
-
-        // Custom events hadlers
-        onNew: function () {
-            var job = new root.app.model.Job({status: "FREE"});
-            job.save();
+            'click #new-watcher': 'onNew'
         },
 
         // Method fired when the view is initialized
         initialize: function () {
             var _this = this;
+            
             this.collection.fetch({
                 success: function (models, response) {
-                    //TODO: loading end
+                    //TODO: Loading...
                 }
             });
         },
 
         template: function (data) {
-            return JST["src/app/templates/jobs.tpl"](data);
+            return JST["src/app/templates/watchers/list.tpl"](data);
         },
         
         // function that renders the view
@@ -46,10 +39,6 @@
             this.$el.html(this.template());
             this.applyBindings();
             return this.$el[0];
-        },
-
-        // function fired when the DOM is rendered
-        load: function () {
         },
 
         // Function called when the view is destroyed

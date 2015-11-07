@@ -1,0 +1,1 @@
+<ul id="jobs-list" data-bind="collection:$collection"> </ul>

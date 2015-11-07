@@ -24,10 +24,6 @@
 
         // Method fired when the view is initialized
         initialize: function () {
-            app.mediator.fire('viewchangeheader', ['KEY_HOME_TTL', false]);
-
-            /* configure footer buttons */
-            app.mediator.fire('viewchangefooter', [false]);
         },
 
         // function that renders the view
