@@ -8,5 +8,21 @@
             <param-value>false</param-value>
         </init-param>
     </servlet>
-
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                REST calls
+            </web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>voyeur-admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+  
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>Voyeur REST</realm-name>
+    </login-config>
 </web-app>   
