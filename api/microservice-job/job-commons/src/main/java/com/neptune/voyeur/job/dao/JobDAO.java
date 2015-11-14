@@ -5,4 +5,6 @@ import com.neptune.voyeur.job.domain.Job;
 
 public interface JobDAO extends DAOTemplate<Job> {
 	public Job free(Job job);
+	
+	public void run(Job job);
 }

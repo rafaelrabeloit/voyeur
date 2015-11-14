@@ -33,4 +33,10 @@ public class JobRESTClient extends ClientTemplateREST<Job> implements JobDAO {
 		
 		return entity;
 	}
+
+	@Override
+	public void run(Job job) {
+		// TODO Auto-generated method stub
+		
+	}
 }

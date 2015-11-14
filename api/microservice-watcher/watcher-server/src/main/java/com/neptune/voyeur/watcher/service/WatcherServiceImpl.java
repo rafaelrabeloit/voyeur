@@ -11,7 +11,6 @@ import javax.xml.bind.ValidationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.neptune.templates.microservice.client.RESTClient;
 import com.neptune.templates.microservice.dao.HibernateDAO;
 import com.neptune.templates.microservice.queue.CuratorQueue;
 import com.neptune.templates.microservice.queue.SingleQueue;
@@ -36,7 +35,7 @@ public class WatcherServiceImpl extends ServiceTemplateImpl<Watcher> implements 
 	static class SingleWatcherQueue extends SingleQueue<Watcher> {
 		final static Logger logger = LogManager.getLogger(SingleWatcherQueue.class);
 
-	    @Inject @RESTClient
+	    @Inject @HibernateDAO
 	    JobDAO jobClient;
 
 	    @Inject @HibernateDAO
@@ -63,6 +62,7 @@ public class WatcherServiceImpl extends ServiceTemplateImpl<Watcher> implements 
 			job.setWatcherId(watcher.getResourceId());
 			
 			job = jobClient.free(job);
+			jobClient.run(job);
 			
 			// No free jobs :P
 			if (job != null) {

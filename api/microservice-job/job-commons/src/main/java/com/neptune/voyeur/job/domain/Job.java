@@ -63,14 +63,12 @@ public class Job extends DomainTemplate implements java.io.Serializable {
 		super();
 	}
 
-	public Job(Integer id, String randomId, UUID threadKey, Status status, String watcherId) {
+	public Job(Integer id, String randomId, Status status) {
 		super();
 		
 		this.id = id;
 		this.randomId = randomId;
-		this.threadKey = threadKey;
 		this.status = status;
-		this.watcherId = watcherId;
 		
 	}
 
