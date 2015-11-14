@@ -4,7 +4,7 @@
 
     "use strict";
 
-    var Jobs = Backbone.Collection.extend({
+    var Jobs = Backbone.VCollection.extend({
         model: root.app.model.Job,
         url: root.app.appParameters.config.apiURL + 'jobs'
     });

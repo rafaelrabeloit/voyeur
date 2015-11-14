@@ -23,9 +23,11 @@
 
         // Custom events hadlers
         onAdd: function () {
+            var _this = this;
             this.model.save([], {
                 success: function (model, response, options) {
                     root.app.dispatcher.trigger('add:job');
+                    _this.model = new root.app.model.Job({status: "FREE"});
                 }
             });
         },

@@ -4,7 +4,7 @@
 
     "use strict";
 
-    var Job = Backbone.Epoxy.Model.extend({
+    var Job = Backbone.VModel.extend({
         urlRoot:  root.app.appParameters.config.apiURL + 'jobs',
         idAttribute: "resource"
     });

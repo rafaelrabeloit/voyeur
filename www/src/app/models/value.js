@@ -4,11 +4,10 @@
 
     "use strict";
 
-    var Value = Backbone.Model.extend({
+    var Value = Backbone.VModel.extend({
         urlRoot: function () {
             return root.app.appParameters.config.apiURL + 'watchers/' + this.watcher + '/values';
-        },
-        idAttribute: "resource"
+        }
     });
 
     root.app = root.app || {};

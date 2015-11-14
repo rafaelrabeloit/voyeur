@@ -4,7 +4,7 @@
 
     "use strict";
 
-    var Watchers = Backbone.Collection.extend({
+    var Watchers = Backbone.VCollection.extend({
         model: root.app.model.Watcher,
         url: root.app.appParameters.config.apiURL + 'watchers'
     });

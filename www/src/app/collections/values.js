@@ -4,7 +4,7 @@
 
     "use strict";
 
-    var Values = Backbone.Collection.extend({
+    var Values = Backbone.VCollection.extend({
         model: root.app.model.Value,
         url: function () {
             return root.app.appParameters.config.apiURL + 'watchers/' + this.watcher + '/values';

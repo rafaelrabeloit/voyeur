@@ -8,6 +8,10 @@
         config: {
             appName: "Voyeur",
             apiURL: "http://api.voyeur.neptune.li/"
+        },
+        auth: {
+            user: "voyeur_admin",
+            pass: ""
         }
     };
 

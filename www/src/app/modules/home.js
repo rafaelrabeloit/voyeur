@@ -36,7 +36,6 @@
 
         // function fired when the DOM is rendered
         load: function () {
-            return;
         },
 
         // Function called when the view is destroyed

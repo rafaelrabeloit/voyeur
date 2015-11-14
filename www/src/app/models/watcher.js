@@ -4,12 +4,11 @@
 
     "use strict";
 
-    var Watcher = Backbone.Model.extend({
+    var Watcher = Backbone.VModel.extend({
         urlRoot:  root.app.appParameters.config.apiURL + 'watchers',
-        idAttribute: "resource",
         initialize: function () {
             var values = new root.app.collection.Values();
-            values.watcher = this.get("id");
+            values.watcher = this.get("resource");
             this.set('values', values);
         }
     });
