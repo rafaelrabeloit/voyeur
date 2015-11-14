@@ -16,6 +16,7 @@ public class ApplicationConfig extends ResourceConfig {
 			.register(DeclarativeLinkingFeature.class)
 			.register(ApplicationEventHandler.class)
 			.register(CORSResponseFilter.class)
+			.register(BasicAuthFilter.class)
 			.setApplicationName("Voyeur");
 	}
 }
