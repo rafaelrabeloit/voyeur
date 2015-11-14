@@ -33,13 +33,13 @@
         <!-- In-Project Dependencies -->
 		<dependency>
 			<groupId>com.neptune.voyeur</groupId>
-			<artifactId>watcher-commons</artifactId>
+			<artifactId>watcher-storage</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>com.neptune.voyeur</groupId>
-			<artifactId>job-client</artifactId>
+			<artifactId>job-storage</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		

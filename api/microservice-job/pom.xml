@@ -10,6 +10,7 @@
         <module>job-commons</module>
         <module>job-server</module>
         <module>job-client</module>	
+        <module>job-storage</module>	
     </modules>
 
     <properties>

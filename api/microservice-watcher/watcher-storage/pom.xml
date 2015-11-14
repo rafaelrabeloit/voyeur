@@ -2,23 +2,30 @@
   	<modelVersion>4.0.0</modelVersion>	
 	<parent>
 		<groupId>com.neptune.voyeur</groupId>
-		<artifactId>value-parent</artifactId>
+		<artifactId>watcher-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>value-server</artifactId>
+	<artifactId>watcher-storage</artifactId>
 	
   	<packaging>ejb</packaging>
   	
-  	<name>value-server</name>
-  	<description>value Server</description>
+  	<name>watcher-storage</name>
+  	<description>watcher Storage</description>
 
 	<dependencies>
+		
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>2.8.0</version>
+		</dependency>
+
 
         <!-- Template -->
 		<dependency>
 			<groupId>com.neptune.templates.microservice</groupId>
-			<artifactId>template-server</artifactId>
+			<artifactId>template-storage</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
@@ -26,7 +33,13 @@
         <!-- In-Project Dependencies -->
 		<dependency>
 			<groupId>com.neptune.voyeur</groupId>
-			<artifactId>value-storage</artifactId>
+			<artifactId>watcher-commons</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.neptune.voyeur</groupId>
+			<artifactId>job-client</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		

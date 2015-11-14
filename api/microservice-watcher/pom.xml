@@ -10,6 +10,7 @@
         <module>watcher-commons</module>
         <module>watcher-server</module>
         <module>watcher-client</module>	
+        <module>watcher-storage</module>	
     </modules>
 
     <properties>

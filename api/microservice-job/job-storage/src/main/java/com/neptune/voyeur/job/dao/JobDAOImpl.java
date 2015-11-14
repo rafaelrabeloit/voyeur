@@ -10,10 +10,23 @@ import com.neptune.templates.microservice.dao.DAOTemplateHibernate;
 import com.neptune.templates.microservice.dao.HibernateDAO;
 import com.neptune.templates.microservice.dao.util.HibernateUtil;
 import com.neptune.voyeur.job.domain.Job;
+import com.neptune.voyeur.job.thread.ExecutorServiceWrapper;
+import com.neptune.voyeur.job.thread.JobThread;
+import com.neptune.voyeur.value.dao.ValueDAO;
+import com.neptune.voyeur.watcher.dao.WatcherDAO;
 
 @HibernateDAO
 public class JobDAOImpl extends DAOTemplateHibernate<Job> implements JobDAO  {
 
+    @Inject
+    ExecutorServiceWrapper executorService;
+
+	@Inject @HibernateDAO
+	WatcherDAO watchers;
+
+	@Inject @HibernateDAO
+	ValueDAO values;
+	
 	@Inject
 	public JobDAOImpl() {
 		super();
@@ -51,6 +64,14 @@ public class JobDAOImpl extends DAOTemplateHibernate<Job> implements JobDAO  {
 		}
 
 		return job;
+	}
+
+	
+	@Override
+	public void run(Job job) {
+		JobThread thread = new JobThread(this, watchers, values);
+		thread.setJob(job);
+		executorService.getPool().execute(thread);
 	}
 	
 }

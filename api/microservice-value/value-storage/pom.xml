@@ -6,19 +6,19 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>value-server</artifactId>
+	<artifactId>value-storage</artifactId>
 	
   	<packaging>ejb</packaging>
   	
-  	<name>value-server</name>
-  	<description>value Server</description>
+  	<name>value-storage</name>
+  	<description>value Storage</description>
 
 	<dependencies>
 
         <!-- Template -->
 		<dependency>
 			<groupId>com.neptune.templates.microservice</groupId>
-			<artifactId>template-server</artifactId>
+			<artifactId>template-storage</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
@@ -26,7 +26,7 @@
         <!-- In-Project Dependencies -->
 		<dependency>
 			<groupId>com.neptune.voyeur</groupId>
-			<artifactId>value-storage</artifactId>
+			<artifactId>value-commons</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		

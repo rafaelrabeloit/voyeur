@@ -2,28 +2,40 @@
   	<modelVersion>4.0.0</modelVersion>	
 	<parent>
 		<groupId>com.neptune.voyeur</groupId>
-		<artifactId>value-parent</artifactId>
+		<artifactId>job-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>value-server</artifactId>
+	<artifactId>job-storage</artifactId>
 	
   	<packaging>ejb</packaging>
   	
-  	<name>value-server</name>
-  	<description>value Server</description>
+  	<name>job-storage</name>
+  	<description>Job storage</description>
 
 	<dependencies>
 
         <!-- Template -->
 		<dependency>
 			<groupId>com.neptune.templates.microservice</groupId>
-			<artifactId>template-server</artifactId>
+			<artifactId>template-storage</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		
         <!-- In-Project Dependencies -->
+		<dependency>
+			<groupId>com.neptune.voyeur</groupId>
+			<artifactId>job-commons</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.neptune.voyeur</groupId>
+			<artifactId>watcher-storage</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.neptune.voyeur</groupId>
 			<artifactId>value-storage</artifactId>
@@ -105,6 +117,13 @@
 		</dependency>
 		
 		
+		<!-- Scrappy Lib -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+		</dependency>
+		
+
         <!-- EJB Espec -->
 		<dependency>
 			<groupId>javax.ejb</groupId>
@@ -116,6 +135,14 @@
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
+		</dependency>
+					
+		
+		<!-- JUnit Lib -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 		
 	</dependencies>

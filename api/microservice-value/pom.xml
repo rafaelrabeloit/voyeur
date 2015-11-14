@@ -10,6 +10,7 @@
         <module>value-commons</module>
         <module>value-server</module>
         <module>value-client</module>	
+        <module>value-storage</module>	
     </modules>
 
     <properties>
