@@ -1,4 +1,4 @@
-package com.neptune.voyeur.job.extractor;
+package com.neptune.voyeur.value.extractor;
 
 import java.io.IOException;
 import javax.json.Json;

@@ -10,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.neptune.voyeur.job.dao.JobDAO;
 import com.neptune.voyeur.job.domain.Job;
-import com.neptune.voyeur.job.extractor.Extractor;
 import com.neptune.voyeur.value.dao.ValueDAO;
 import com.neptune.voyeur.value.domain.Value;
 import com.neptune.voyeur.watcher.dao.WatcherDAO;
@@ -68,24 +67,16 @@ public class JobThread implements Runnable {
 		// Get the watcher for target and selector
 		watcher = watchers.retrieve(watcher);
 
-		String data = "";
-		
 		try {
-			Extractor extractor = new Extractor(watcher.getTarget(), watcher.getSelector());			
-	    	data = extractor.request().extract();	    	
+
+			// Put a new value
+			values.create(Value.extract(watcher));
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	
-		Value value = new Value();
-		value.setValue(data);
-		value.setWatcherId(watcher.getResourceId());
-		
-		// Put a new value
-		values.create(value);
-
-
 		logger.info("Job thread with key " + job.getThreadId() + " ended");
 		
 		job.setStatus(Job.Status.FREE);

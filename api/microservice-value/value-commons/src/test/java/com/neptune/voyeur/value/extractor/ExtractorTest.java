@@ -1,4 +1,4 @@
-package com.neptune.voyeur.job.extractor;
+package com.neptune.voyeur.value.extractor;
 
 import junit.framework.TestCase;
 
@@ -6,7 +6,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
 
-import com.neptune.voyeur.job.extractor.Extractor;
+import com.neptune.voyeur.value.extractor.Extractor;
 
 public class ExtractorTest extends TestCase {
 

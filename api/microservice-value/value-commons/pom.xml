@@ -15,6 +15,14 @@
 
 	<dependencies>
 
+        <!-- In-Project Dependencies -->
+		<dependency>
+			<groupId>com.neptune.voyeur</groupId>
+			<artifactId>watcher-commons</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		
         <!-- Template -->
 		<dependency>
 			<groupId>com.neptune.templates.microservice</groupId>
@@ -48,7 +56,21 @@
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>javax.el</artifactId>
 		</dependency>
+							
 		
+		<!-- JUnit Lib -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		
+		<!-- Scrappy Lib -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+		</dependency>
 	</dependencies>
 	
 </project>

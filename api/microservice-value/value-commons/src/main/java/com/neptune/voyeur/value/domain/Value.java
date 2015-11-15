@@ -1,5 +1,6 @@
 package com.neptune.voyeur.value.domain;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,8 @@ import org.glassfish.jersey.linking.InjectLinks;
 
 import com.neptune.templates.microservice.adapter.ListLinkAdapter;
 import com.neptune.templates.microservice.domain.DomainTemplate;
+import com.neptune.voyeur.value.extractor.Extractor;
+import com.neptune.voyeur.watcher.domain.Watcher;
 
 
 /**
@@ -126,5 +129,23 @@ public class Value extends DomainTemplate implements java.io.Serializable {
 	@PrePersist
 	protected void onCreate() {
 		this.createdOn = new Date();
+	}
+	
+	/**
+	 * Value should be extracted always in this format.
+	 * This is a build method
+	 * @param watcher
+	 * @return
+	 * @throws IOException
+	 */
+	public static Value extract(Watcher watcher) throws IOException {
+		Extractor extractor = new Extractor(watcher.getTarget(), watcher.getSelector());			
+    	String data = extractor.request().extract();	 
+
+		Value value = new Value();
+		value.setValue(data);
+		value.setWatcherId(watcher.getResourceId());
+		
+		return value;
 	}
 }
