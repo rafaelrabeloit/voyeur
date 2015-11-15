@@ -30,18 +30,6 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>com.neptune.voyeur</groupId>
-			<artifactId>watcher-storage</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.neptune.voyeur</groupId>
-			<artifactId>value-storage</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
 		
         <!-- Jersey -->
 		<dependency>
