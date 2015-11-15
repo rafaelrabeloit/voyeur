@@ -15,7 +15,7 @@ implements ContainerResponseFilter {
 
 		MultivaluedMap<String, Object> headers = responseContext.getHeaders();
 
-		headers.add("Access-Control-Allow-Origin", "http://www.voyeur.neptune.li");		
+		headers.add("Access-Control-Allow-Origin", "*");		
 		headers.add("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS");
         headers.add("Access-Control-Allow-Credentials", "true");
 		headers.add("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept, Authorization");

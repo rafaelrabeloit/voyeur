@@ -7,10 +7,10 @@
     var appParameters = {
         config: {
             appName: "Voyeur",
-            apiURL: "http://api.voyeur.neptune.li/"
+            apiURL: "http://api.voyeur.jupiter.li/"
         },
         auth: {
-            user: "voyeur_admin",
+            user: "",
             pass: ""
         }
     };

@@ -26,6 +26,19 @@
 
         print: function () {
             root.print();
+        },
+
+        auth: function (xhr) {
+            var token = root.app.appParameters.auth.user.concat(":", root.app.appParameters.auth.pass);
+            xhr.setRequestHeader('Authorization', ("Basic ".concat(root.btoa(token))));
+        },
+
+        error: function (xhr, statusTxt, thrown) {
+            //unauthorized
+            if (xhr.status === 401) {
+                root.app.core.replace("home");
+                root.app.dispatcher.trigger('modal', ["Login error"]);
+            }
         }
     };
 

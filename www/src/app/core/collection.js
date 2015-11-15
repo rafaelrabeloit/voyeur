@@ -7,10 +7,8 @@
     Backbone.VCollection = Backbone.Collection.extend({
         sync: function (method, collection, options) {
             options = options || {};
-            options.beforeSend = function (xhr) {
-                var token = root.app.appParameters.auth.user.concat(":", root.app.appParameters.auth.pass);
-                xhr.setRequestHeader('Authorization', ("Basic ".concat(root.btoa(token))));
-            };
+            options.beforeSend = root.app.core.auth;
+            options.error = root.app.core.error;
             return Backbone.sync.call(this, method, collection, options);
         }
     });

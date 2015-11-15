@@ -34,17 +34,22 @@
                 deps: [ 'jquery' ]
             },
             'app' : { deps: [ 'jquery', 'underscore', 'backbone', 'bootstrap', 'backbone.epoxy' ] },
+            
+            'templates/compiled/compiled': { deps: [ 'app' ] },
+            
+            'services/modal': { deps: ['templates/compiled/compiled'] },
+            
             'core/strings' : { deps: [ 'app' ] },
             'core/mediator' : { deps: [ 'core/strings' ] },
             'core/appParameters' : { deps: [ 'core/strings' ] },
             'core/stringtable' : { deps: [ 'core/strings' ] },
-            'core/core': { deps: ['core/strings'] },
-            'core/model' : { deps: [ 'core/strings' ] },
-            'core/collection': { deps: ['core/strings'] },
+            'core/core': { deps: ['core/mediator', 'services/modal'] },
+            'core/model' : { deps: [ 'core/core' ] },
+            'core/collection': { deps: ['core/core'] },
             'views/footer': { deps: ['core/strings'] },
             'views/header': { deps: ['core/strings'] },
             'views/slider': { deps: ['core/strings'] },
-
+            
             'models/watcher': { deps: ['core/model', 'collections/values', 'core/appParameters'] },
             'models/value': { deps: ['core/model', 'core/appParameters'] },
             'models/job': { deps: ['core/model', 'core/appParameters'] },
@@ -52,8 +57,7 @@
             'collections/values': { deps: ['core/collection', 'models/value', 'core/appParameters'] },
             'collections/jobs': { deps: ['core/collection', 'models/job', 'core/appParameters'] },
 
-            'templates/compiled/compiled': { deps: [ 'core/strings' ] },
-            
+
             'modules/home': { deps: ['templates/compiled/compiled'] },
             'modules/watchers': { deps: ['templates/compiled/compiled', 'views/watchers/list', 'views/watchers/add'] },
             'modules/jobs': { deps: ['templates/compiled/compiled', 'views/jobs/list', 'views/jobs/add'] },
@@ -79,6 +83,7 @@
                     'core/core',
                     'core/model',
                     'core/collection',
+                    'services/modal',
                     'views/footer',
                     'views/header',
                     'views/slider',

@@ -6,41 +6,25 @@
     // Declares local variables
     var alert, timeout, modal = {
 
-        onModal: function (text, alertType) {
-
-            // Creates the modal div if it doesn't exists
-            if (!alert) {
-                alert = document.createElement('div');
-                alert.className = 'modal alert ' + alertType;
-                $('body')[0].appendChild(alert);
-            }
+        onModal: function (text, title) {
+            $("body").append(JST["src/app/templates/modal.tpl"]());
+            alert = $("#myModal");
 
             // Sets the text to the alert and sets the class to active
-            alert.textContent = text;
+            $(".modal-body", alert).text(text);
+            $(".modal-title", alert).text(title);
 
-            // Sets the animation 
-            setTimeout(function () {
+            alert.modal("show");
 
-                // Adds the active class
-                alert.classList.add('active');
-
-                // if a timeoput was already set it clears it
-                if (timeout) {
-                    clearTimeout(timeout);
-                }
-
-                // then it sets a nex timeout to take off the alert
-                timeout = setTimeout(function () {
-                    alert.parentNode.removeChild(alert);
-                    alert = null;
-                }, 2000);
-            }, 0);
-
-
+            alert.on('hidden.bs.modal', function (e) {
+                alert.off();
+                alert.remove();
+                alert = null;
+            });
         }
     };
 
     // Adds the service to the mediator
-    root.app.mediator.on('modal', modal.onModal);
+    root.app.dispatcher.on('modal', modal.onModal, modal);
 
 }(window));
